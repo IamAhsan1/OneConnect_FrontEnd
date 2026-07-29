@@ -8,36 +8,74 @@ const AuthLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-      {/* Top Navigation for Auth Pages */}
-      <header className="py-4 px-6 flex justify-between items-center border-b bg-white shadow-sm">
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" onClick={() => navigate(-1)} aria-label="back">
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
-          <Link to="/" className="text-xl font-bold text-blue-600 tracking-tight">
-            OneConnect
-          </Link>
-        </div>
-        <div className="flex gap-2">
-          <Button asChild variant="outline" size="sm">
-            <Link to="/register/customer">Register as Customer</Link>
-          </Button>
-          <Button asChild size="sm">
-            <Link to="/register/provider">Register as Provider</Link>
-          </Button>
+
+      {/* Top Navigation */}
+      <header className="border-b bg-white shadow-sm">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 px-4 py-4 sm:flex-row sm:px-6">
+
+          {/* Logo + Back */}
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate(-1)}
+              aria-label="Go Back"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+
+            <Link
+              to="/"
+              className="text-xl font-bold tracking-tight text-blue-600"
+            >
+              OneConnect
+            </Link>
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="w-full sm:w-auto"
+            >
+              <Link to="/register/customer">
+                Register as Customer
+              </Link>
+            </Button>
+
+            <Button
+              asChild
+              size="sm"
+              className="w-full sm:w-auto"
+            >
+              <Link to="/register/provider">
+                Register as Provider
+              </Link>
+            </Button>
+
+          </div>
+
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <main className="flex-grow flex items-center justify-center p-6 relative overflow-hidden">
-        {/* Decorative background blur (Tailwind translation of previous MUI blur circles) */}
-        <div className="absolute top-[10%] left-[20%] w-[400px] h-[400px] bg-blue-600 opacity-5 blur-[100px] rounded-full z-0" />
-        <div className="absolute bottom-[10%] right-[20%] w-[400px] h-[400px] bg-emerald-500 opacity-5 blur-[100px] rounded-full z-0" />
-        
+      {/* Main Content */}
+      <main className="relative flex flex-1 items-center justify-center overflow-hidden px-4 py-6 sm:px-6">
+
+        {/* Background Blur */}
+        <div className="absolute left-[20%] top-[10%] h-[300px] w-[300px] rounded-full bg-blue-600 opacity-5 blur-[100px] sm:h-[400px] sm:w-[400px]" />
+
+        <div className="absolute bottom-[10%] right-[20%] h-[300px] w-[300px] rounded-full bg-emerald-500 opacity-5 blur-[100px] sm:h-[400px] sm:w-[400px]" />
+
+        {/* Auth Card */}
         <div className="relative z-10 w-full max-w-md animate-in fade-in zoom-in-95 duration-300">
           <Outlet />
         </div>
+
       </main>
+
     </div>
   );
 };
