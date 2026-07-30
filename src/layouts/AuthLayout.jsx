@@ -15,7 +15,7 @@ const AuthLayout = () => {
             <img
               src={logoIcon}
               alt="OneConnect"
-              className="h-11 w-auto object-contain"
+              className="h-14 w-auto object-contain bg-none shadow-none"
             />
           </Link>
 

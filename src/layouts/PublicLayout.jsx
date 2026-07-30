@@ -22,7 +22,7 @@ const PublicLayout = () => {
                 <img
                   src={logoFull}
                   alt="OneConnect"
-                  className="h-10 w-auto object-contain sm:h-12 lg:h-14"
+                  className="h-10 w-auto object-contain sm:h-12 lg:h-14 bg-transparent shadow-none"
                 />
               </Link>
 
