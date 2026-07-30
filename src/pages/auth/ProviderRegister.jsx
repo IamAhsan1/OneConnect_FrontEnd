@@ -99,7 +99,7 @@ const ProviderRegister = () => {
               <Input
                 id="fullName"
                 placeholder="e.g. Dr. Sarah Ahmed"
-                className={errors.fullName ? "border-red-500" : ""}
+                className={`h-12 rounded-xl border-slate-300 transition-all duration-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 ${errors.fullName ? "border-red-500" : ""}`}
                 {...register("fullName")}
               />
               {errors.fullName && (
@@ -114,7 +114,7 @@ const ProviderRegister = () => {
               <Input
                 id="email"
                 type="email"
-                className={errors.email ? "border-red-500" : ""}
+                className={`h-12 rounded-xl border-slate-300 transition-all duration-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 ${errors.email ? "border-red-500" : ""}`}
                 {...register("email")}
               />
               {errors.email && (
@@ -129,7 +129,7 @@ const ProviderRegister = () => {
               <Input
                 id="password"
                 type="password"
-                className={errors.password ? "border-red-500" : ""}
+                className={`h-12 rounded-xl border-slate-300 transition-all duration-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 ${errors.password ? "border-red-500" : ""}`}
                 {...register("password")}
               />
               {errors.password && (
@@ -148,7 +148,7 @@ const ProviderRegister = () => {
                 <Label htmlFor="category">Category</Label>
                 <select
                   id="category"
-                  className={`flex h-10 w-full items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+                  className={`flex h-12 w-full rounded-xl items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
                     errors.category ? "border-red-500" : "border-input"
                   }`}
                   {...register("category")}
@@ -169,7 +169,7 @@ const ProviderRegister = () => {
                 <Label htmlFor="subCategory">Sub-Category</Label>
                 <select
                   id="subCategory"
-                  className={`flex h-10 w-full items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+                  className={`flex h-12 w-full rounded-xl items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
                     errors.subCategory ? "border-red-500" : "border-input"
                   }`}
                   {...register("subCategory")}
@@ -192,7 +192,7 @@ const ProviderRegister = () => {
               <Input
                 id="experience"
                 type="number"
-                className={errors.experience ? "border-red-500" : ""}
+                className={`h-12 rounded-xl border-slate-300 transition-all duration-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 ${errors.experience ? "border-red-500" : ""}`}
                 {...register("experience")}
               />
               {errors.experience && (
@@ -234,18 +234,18 @@ const ProviderRegister = () => {
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto border-0 shadow-lg rounded-xl sm:rounded-2xl">
-      <CardHeader className="space-y-2 px-4 sm:px-6 md:px-8 pt-6 sm:pt-8 pb-4 text-center">
-        <CardTitle className="text-2xl sm:text-3xl font-bold tracking-tight">
+    <Card className="mx-auto w-full max-w-2xl rounded-2xl border border-slate-200/70 bg-white shadow-2xl shadow-slate-200/60 backdrop-blur-sm transition-all duration-300">
+      <CardHeader className="space-y-3 px-6 sm:px-8 pt-8 pb-5 text-center">
+        <CardTitle className="text-3xl font-extrabold tracking-tight text-slate-900">
           Professional Application
         </CardTitle>
 
-        <CardDescription className="text-sm sm:text-base">
+        <CardDescription className="text-sm text-slate-500">
           Join OneConnect in three easy steps
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="px-4 sm:px-6 md:px-8 pb-6 sm:pb-8">
+      <CardContent className="px-6 sm:px-8 pb-8">
         {/* Stepper Header */}
         <div className="flex items-center justify-center overflow-x-auto pb-2 mb-8">
           {steps.map((label, index) => (
@@ -294,7 +294,7 @@ const ProviderRegister = () => {
               variant="outline"
               disabled={activeStep === 0}
               onClick={handleBack}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto rounded-xl"
             >
               Back
             </Button>
@@ -303,7 +303,7 @@ const ProviderRegister = () => {
               type="button"
               onClick={handleNext}
               disabled={isSubmitting}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto rounded-xl"
             >
               {activeStep === steps.length - 1
                 ? "Submit Application"
