@@ -1,6 +1,8 @@
-import React from 'react';
-import { Outlet, useNavigate, Link } from 'react-router';
-import { ArrowLeft } from 'lucide-react';
+import React from "react";
+import { Link, Outlet, useNavigate } from "react-router";
+import { ArrowLeft } from "lucide-react";
+
+import logoIcon from "@/assets/logo-icon.png";
 import { Button } from "@/components/ui/button";
 
 const AuthLayout = () => {
@@ -8,13 +10,11 @@ const AuthLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-
-      {/* Top Navigation */}
+      {/* Header */}
       <header className="border-b bg-white shadow-sm">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 px-4 py-4 sm:flex-row sm:px-6">
-
-          {/* Logo + Back */}
-          <div className="flex items-center gap-2 self-start sm:self-auto">
+          {/* Back Button + Logo */}
+          <div className="flex items-center gap-3 self-start sm:self-auto">
             <Button
               variant="ghost"
               size="icon"
@@ -24,17 +24,17 @@ const AuthLayout = () => {
               <ArrowLeft className="h-5 w-5" />
             </Button>
 
-            <Link
-              to="/"
-              className="text-xl font-bold tracking-tight text-blue-600"
-            >
-              OneConnect
+            <Link to="/" className="flex items-center">
+              <img
+                src={logoIcon}
+                alt="OneConnect"
+                className="h-11 w-auto"
+              />
             </Link>
           </div>
 
-          {/* Navigation Buttons */}
+          {/* Navigation */}
           <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
-
             <Button
               asChild
               variant="outline"
@@ -55,27 +55,22 @@ const AuthLayout = () => {
                 Register as Provider
               </Link>
             </Button>
-
           </div>
-
         </div>
       </header>
 
       {/* Main Content */}
       <main className="relative flex flex-1 items-center justify-center overflow-hidden px-4 py-6 sm:px-6">
-
         {/* Background Blur */}
         <div className="absolute left-[20%] top-[10%] h-[300px] w-[300px] rounded-full bg-blue-600 opacity-5 blur-[100px] sm:h-[400px] sm:w-[400px]" />
 
         <div className="absolute bottom-[10%] right-[20%] h-[300px] w-[300px] rounded-full bg-emerald-500 opacity-5 blur-[100px] sm:h-[400px] sm:w-[400px]" />
 
-        {/* Auth Card */}
+        {/* Auth Content */}
         <div className="relative z-10 w-full max-w-md animate-in fade-in zoom-in-95 duration-300">
           <Outlet />
         </div>
-
       </main>
-
     </div>
   );
 };

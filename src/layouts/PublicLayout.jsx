@@ -1,7 +1,9 @@
-import React from 'react';
-import { Outlet, Link } from 'react-router';
-import { Menu } from 'lucide-react';
+import React from "react";
+import { Outlet, Link } from "react-router";
+import { Menu } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
+import logoFull from "@/assets/logo-full.png";
 
 const PublicLayout = () => {
   return (
@@ -9,17 +11,28 @@ const PublicLayout = () => {
       {/* Top Navigation */}
       <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-20">
             <div className="flex items-center gap-8">
-              <Link to="/" className="text-2xl font-extrabold text-blue-600 tracking-tight">
-                OneConnect
+              <Link to="/" className="flex items-center">
+ <img
+  src={logoFull}
+  alt="OneConnect"
+  className="h-10 sm:h-12 lg:h-14 w-auto object-contain"
+/>
               </Link>
-              
+
               <div className="hidden md:flex gap-4">
-                <Link to="/" className="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors">
+                <Link
+                  to="/"
+                  className="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors"
+                >
                   Find Professionals
                 </Link>
-                <Link to="/" className="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors">
+
+                <Link
+                  to="/"
+                  className="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors"
+                >
                   How it Works
                 </Link>
               </div>
@@ -29,6 +42,7 @@ const PublicLayout = () => {
               <Button asChild variant="outline">
                 <Link to="/login">Login</Link>
               </Button>
+
               <Button asChild>
                 <Link to="/register/customer">Register</Link>
               </Button>
@@ -50,7 +64,8 @@ const PublicLayout = () => {
       <footer className="py-8 bg-white border-t mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-sm text-center text-slate-500">
-            &copy; {new Date().getFullYear()} OneConnect Platform. All rights reserved.
+            &copy; {new Date().getFullYear()} OneConnect Platform. All rights
+            reserved.
           </p>
         </div>
       </footer>
