@@ -1,37 +1,23 @@
 import React from "react";
-import { Link, Outlet, useNavigate } from "react-router";
-import { ArrowLeft } from "lucide-react";
+import { Link, Outlet } from "react-router";
 
-import logoIcon from "@/assets/logo-icon.png";
 import { Button } from "@/components/ui/button";
+import logoIcon from "@/assets/logo-icon.png";
 
 const AuthLayout = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
       {/* Header */}
       <header className="border-b bg-white shadow-sm">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 px-4 py-4 sm:flex-row sm:px-6">
-          {/* Back Button + Logo */}
-          <div className="flex items-center gap-3 self-start sm:self-auto">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigate(-1)}
-              aria-label="Go Back"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-
-            <Link to="/" className="flex items-center">
-              <img
-                src={logoIcon}
-                alt="OneConnect"
-                className="h-11 w-auto"
-              />
-            </Link>
-          </div>
+          {/* Logo */}
+          <Link to="/" className="flex items-center self-start sm:self-auto">
+            <img
+              src={logoIcon}
+              alt="OneConnect"
+              className="h-11 w-auto object-contain"
+            />
+          </Link>
 
           {/* Navigation */}
           <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
