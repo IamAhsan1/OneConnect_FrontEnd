@@ -1,18 +1,16 @@
-import React from 'react';
-import { useParams, Link } from 'react-router';
-import { Star, ArrowLeft, MapPin } from 'lucide-react';
-
-import BookingWidget from '../../components/public/BookingWidget';
+import React from "react";
+import { useParams, Link } from "react-router";
+import { ArrowLeft, CheckCircle, MapPin, Star, Globe } from "lucide-react";
+import BookingWidget from "../../components/public/BookingWidget";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ProviderProfile = () => {
   const { id } = useParams();
 
-  // Mock Provider Data
   const provider = {
-    id: id,
+    id,
     name: "Dr. Sarah Ahmed",
     category: "Healthcare",
     specialty: "Cardiologist",
@@ -25,88 +23,96 @@ const ProviderProfile = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 animate-in fade-in duration-500">
-      <Link to="/" className="inline-flex items-center text-sm font-semibold text-blue-600 hover:underline mb-6">
-        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Directory
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <Link to="/" className="mb-8 inline-flex items-center gap-2 font-semibold text-blue-600 hover:text-blue-700">
+        <ArrowLeft className="h-4 w-4"/> Back to Directory
       </Link>
 
-      {/* Profile Header */}
-      <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-10 mb-8 shadow-sm">
-        <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
-          <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-4xl md:text-5xl font-bold shrink-0">
-            {provider.name.charAt(0)}
-          </div>
-          
-          <div className="flex-grow">
-            <div className="flex flex-wrap items-center gap-3 mb-2">
-              <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900">
-                {provider.name}
-              </h1>
-              <Badge className="bg-emerald-500 hover:bg-emerald-600">Verified</Badge>
+      <div className="mb-8 overflow-hidden rounded-3xl border bg-gradient-to-br from-white via-blue-50 to-slate-50 shadow-xl">
+        <div className="p-8 md:p-10">
+          <div className="flex flex-col gap-8 md:flex-row md:items-center">
+            <div className="flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-5xl font-bold text-white shadow-xl">
+              {provider.name.charAt(0)}
             </div>
-            
-            <p className="text-lg text-slate-600 font-medium mb-4">
-              {provider.category} <span className="mx-2">•</span> {provider.specialty}
-            </p>
-            
-            <div className="flex flex-wrap items-center gap-4 text-sm font-medium">
-              <div className="flex items-center gap-1">
-                <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
-                <span className="text-slate-900 text-base">{provider.rating}</span>
-                <span className="text-slate-500">({provider.reviews} Reviews)</span>
+
+            <div className="flex-1">
+              <div className="mb-3 flex flex-wrap items-center gap-3">
+                <h1 className="text-4xl font-extrabold text-slate-900">{provider.name}</h1>
+                <Badge className="rounded-full bg-emerald-500 px-3 py-1">
+                  <CheckCircle className="mr-1 h-3 w-3"/> Verified
+                </Badge>
               </div>
-              
-              <div className="hidden sm:block w-px h-5 bg-slate-300"></div>
-              
-              <div className="text-slate-900 text-base">
-                <span className="font-bold">${provider.hourlyRate}</span> <span className="text-slate-500 font-normal">/ session</span>
+
+              <p className="text-lg font-medium text-blue-600">
+                {provider.category} • {provider.specialty}
+              </p>
+
+              <div className="mt-5 flex flex-wrap gap-3">
+                <div className="rounded-xl bg-white px-4 py-3 shadow">
+                  <div className="flex items-center gap-2">
+                    <Star className="h-4 w-4 fill-amber-400 text-amber-400"/>
+                    <span className="font-bold">{provider.rating}</span>
+                    <span className="text-slate-500">({provider.reviews})</span>
+                  </div>
+                </div>
+
+                <div className="rounded-xl bg-white px-4 py-3 shadow">
+                  <span className="text-2xl font-bold">${provider.hourlyRate}</span>
+                  <span className="text-slate-500"> / session</span>
+                </div>
+
+                <div className="rounded-xl bg-white px-4 py-3 shadow">
+                  <span className="font-semibold">10+ Years Experience</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Main Content Area */}
+      <div className="grid gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-            <Tabs defaultValue="about" className="w-full">
+          <div className="overflow-hidden rounded-3xl border bg-white shadow-lg">
+            <Tabs defaultValue="about">
               <div className="border-b px-6">
-                <TabsList className="bg-transparent h-14">
-                  <TabsTrigger value="about" className="data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:shadow-none rounded-none px-4 font-semibold text-base">About</TabsTrigger>
-                  <TabsTrigger value="reviews" className="data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:shadow-none rounded-none px-4 font-semibold text-base">Reviews</TabsTrigger>
+                <TabsList className="h-14 bg-transparent">
+                  <TabsTrigger value="about">About</TabsTrigger>
+                  <TabsTrigger value="reviews">Reviews</TabsTrigger>
                 </TabsList>
               </div>
-              
-              <div className="p-6 md:p-8">
-                <TabsContent value="about" className="mt-0 outline-none">
-                  <h3 className="text-xl font-bold text-slate-900 mb-4">Biography</h3>
-                  <p className="text-slate-600 leading-relaxed mb-8">
-                    {provider.bio}
-                  </p>
 
-                  <Separator className="mb-8" />
+              <div className="p-8">
+                <TabsContent value="about">
+                  <h2 className="mb-4 text-2xl font-bold">Biography</h2>
+                  <p className="leading-8 text-slate-600">{provider.bio}</p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <div>
-                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Specialization</h4>
-                      <p className="font-semibold text-slate-900">{provider.specialty}</p>
+                  <Separator className="my-8"/>
+
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <div className="rounded-2xl bg-slate-50 p-5">
+                      <h4 className="mb-2 text-sm font-bold uppercase text-slate-400">Specialization</h4>
+                      <p className="font-semibold">{provider.specialty}</p>
                     </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Languages Spoken</h4>
-                      <p className="font-semibold text-slate-900">{provider.languages.join(', ')}</p>
+
+                    <div className="rounded-2xl bg-slate-50 p-5">
+                      <h4 className="mb-2 text-sm font-bold uppercase text-slate-400">Languages</h4>
+                      <div className="flex items-center gap-2">
+                        <Globe className="h-4 w-4 text-blue-600"/>
+                        <span>{provider.languages.join(", ")}</span>
+                      </div>
                     </div>
-                    <div className="sm:col-span-2">
-                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Clinic Location</h4>
-                      <div className="flex items-start gap-2 text-slate-900 font-semibold">
-                        <MapPin className="w-5 h-5 text-blue-500 shrink-0" />
+
+                    <div className="rounded-2xl bg-slate-50 p-5 md:col-span-2">
+                      <h4 className="mb-2 text-sm font-bold uppercase text-slate-400">Clinic Location</h4>
+                      <div className="flex gap-2">
+                        <MapPin className="h-5 w-5 text-blue-600"/>
                         <span>{provider.location}</span>
                       </div>
                     </div>
                   </div>
                 </TabsContent>
-                
-                <TabsContent value="reviews" className="mt-0 outline-none">
+
+                <TabsContent value="reviews">
                   <div className="py-12 text-center text-slate-500">
                     Reviews will appear here...
                   </div>
@@ -116,10 +122,9 @@ const ProviderProfile = () => {
           </div>
         </div>
 
-        {/* Sidebar: Booking Widget */}
-        <div className="lg:col-span-1">
-          <div className="sticky top-24">
-            <BookingWidget providerId={provider.id} />
+        <div>
+          <div className="sticky top-24 rounded-3xl bg-white/70 backdrop-blur-sm">
+            <BookingWidget providerId={provider.id}/>
           </div>
         </div>
       </div>
