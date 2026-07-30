@@ -9,69 +9,57 @@ const ProviderCard = ({ provider, viewMode }) => {
 
   if (viewMode === "list") {
     return (
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:shadow-lg">
+      <div className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
         <div className="flex flex-col lg:flex-row">
-          {/* Left Content */}
-          <div className="flex flex-1 items-start gap-4 p-5 sm:gap-6 sm:p-6">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-blue-100 text-2xl font-bold text-blue-700 sm:h-20 sm:w-20 sm:text-3xl">
+          <div className="flex flex-1 gap-5 p-6">
+            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-3xl font-bold text-white shadow-lg">
               {provider.name.charAt(0)}
             </div>
 
-            <div className="min-w-0 flex-1">
-              <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center">
+            <div className="flex-1 min-w-0">
+              <div className="mb-2 flex flex-wrap items-center gap-3">
                 <h3
-                  className="cursor-pointer break-words text-lg font-bold text-blue-600 hover:underline sm:text-xl"
                   onClick={() => navigate(`/provider/${provider.id}`)}
+                  className="cursor-pointer text-xl font-bold text-slate-900 transition hover:text-blue-600"
                 >
                   {provider.name}
                 </h3>
 
-                <Badge className="w-fit bg-emerald-500 px-2 py-1 text-[10px] hover:bg-emerald-600">
+                <Badge className="rounded-full bg-emerald-500 px-3 py-1 hover:bg-emerald-600">
                   <CheckCircle className="mr-1 h-3 w-3" />
                   Verified
                 </Badge>
               </div>
 
-              <p className="mb-3 text-sm font-semibold text-slate-600">
-                {provider.specialty}
-              </p>
+              <p className="font-medium text-blue-600">{provider.specialty}</p>
 
-              <div className="mb-3 flex flex-wrap items-center gap-1">
-                <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-
-                <span className="text-sm font-bold text-slate-700">
-                  {provider.rating}
-                </span>
-
-                <span className="text-sm text-slate-500">
-                  ({provider.reviews} Reviews)
-                </span>
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
+                <Star className="h-4 w-4 fill-amber-400 text-amber-400"/>
+                <span className="font-bold">{provider.rating}</span>
+                <span className="text-slate-500">({provider.reviews} Reviews)</span>
               </div>
 
-              <div className="flex items-center gap-2 text-sm text-slate-500">
-                <MapPin className="h-4 w-4 shrink-0" />
+              <div className="mt-3 flex items-center gap-2 text-slate-500">
+                <MapPin className="h-4 w-4"/>
                 <span>Lahore Medical Center</span>
               </div>
+
+              <p className="mt-4 line-clamp-2 text-sm text-slate-600">
+                {provider.bio}
+              </p>
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="h-px bg-slate-200 lg:h-auto lg:w-px"></div>
-
-          {/* Right Side */}
-          <div className="flex flex-col justify-center bg-slate-50 p-5 lg:min-w-[220px] lg:p-6">
-            <div className="mb-4 text-center">
-              <p className="text-2xl font-bold text-slate-900">
-                ${provider.hourlyRate}
-              </p>
-
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                Consultation Fee
-              </p>
-            </div>
+          <div className="flex min-w-[230px] flex-col justify-center border-t bg-slate-50 p-6 lg:border-l lg:border-t-0">
+            <p className="text-center text-3xl font-extrabold text-slate-900">
+              ${provider.hourlyRate}
+            </p>
+            <p className="mb-5 text-center text-xs uppercase tracking-wider text-slate-500">
+              Consultation Fee
+            </p>
 
             <Button
-              className="w-full font-semibold"
+              className="w-full rounded-xl font-semibold shadow-lg transition-all hover:scale-[1.02]"
               onClick={() => navigate(`/provider/${provider.id}`)}
             >
               Book Appointment
@@ -82,54 +70,47 @@ const ProviderCard = ({ provider, viewMode }) => {
     );
   }
 
-  // GRID VIEW
-
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-      <div className="flex flex-1 flex-col p-5 text-center sm:p-6">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-2xl font-bold text-blue-700 sm:h-20 sm:w-20 sm:text-3xl">
+    <div className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+      <div className="h-2 bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-600"/>
+      <div className="flex flex-1 flex-col p-6 text-center">
+        <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-3xl font-bold text-white shadow-lg">
           {provider.name.charAt(0)}
         </div>
 
+        <Badge className="mx-auto mb-3 rounded-full bg-emerald-500 px-3">
+          <CheckCircle className="mr-1 h-3 w-3"/>
+          Verified
+        </Badge>
+
         <h3
-          className="mb-2 cursor-pointer break-words text-lg font-bold text-blue-600 hover:underline"
+          className="cursor-pointer text-xl font-bold text-slate-900 transition hover:text-blue-600"
           onClick={() => navigate(`/provider/${provider.id}`)}
         >
           {provider.name}
         </h3>
 
-        <p className="mb-3 text-sm font-semibold text-slate-600">
-          {provider.specialty}
-        </p>
+        <p className="mt-2 font-medium text-blue-600">{provider.specialty}</p>
 
-        <div className="mb-4 flex flex-wrap items-center justify-center gap-1">
-          <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-
-          <span className="text-sm font-bold text-slate-700">
-            {provider.rating}
-          </span>
-
-          <span className="text-sm text-slate-500">
-            ({provider.reviews})
-          </span>
+        <div className="mt-3 flex items-center justify-center gap-2">
+          <Star className="h-4 w-4 fill-amber-400 text-amber-400"/>
+          <span className="font-bold">{provider.rating}</span>
+          <span className="text-slate-500">({provider.reviews})</span>
         </div>
 
-        <div className="mb-5">
-          <span className="text-2xl font-bold text-slate-900">
-            ${provider.hourlyRate}
-          </span>
+        <p className="mt-4 line-clamp-3 text-sm text-slate-600">{provider.bio}</p>
 
-          <span className="text-sm text-slate-500"> / session</span>
+        <div className="mt-6">
+          <span className="text-3xl font-extrabold">${provider.hourlyRate}</span>
+          <span className="text-slate-500"> / session</span>
         </div>
 
-        <div className="mt-auto">
-          <Button
-            className="w-full font-semibold"
-            onClick={() => navigate(`/provider/${provider.id}`)}
-          >
-            Book Appointment
-          </Button>
-        </div>
+        <Button
+          className="mt-auto mt-6 w-full rounded-xl font-semibold shadow-lg transition-all hover:scale-[1.02]"
+          onClick={() => navigate(`/provider/${provider.id}`)}
+        >
+          Book Appointment
+        </Button>
       </div>
     </div>
   );
