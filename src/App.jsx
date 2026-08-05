@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 
+
 // Layouts
 import AuthLayout from './layouts/AuthLayout';
 import PublicLayout from './layouts/PublicLayout';
@@ -17,6 +18,10 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 // Public Pages (Side 1)
 import Home from './pages/public/Home';
 import ProviderProfile from './pages/public/ProviderProfile';
+import AboutUs from "./pages/public/AboutUs";
+import ContactUs from "@/pages/public/ContactUs";
+import Services from "./pages/public/Services";
+import Doctors from "./pages/public/Doctors";
 
 // Customer Pages
 import Checkout from './pages/customer/Checkout';
@@ -42,6 +47,10 @@ function App() {
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/provider/:id" element={<ProviderProfile />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/doctors" element={<Doctors />} />
         </Route>
 
         {/* Authentication Routes */}
