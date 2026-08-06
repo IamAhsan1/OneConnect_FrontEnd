@@ -18,6 +18,8 @@ const mockCategories = [
 
 const AdminCategories = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [manageSubsOpen, setManageSubsOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   return (
     <div className="space-y-8">
@@ -102,7 +104,18 @@ const AdminCategories = () => {
                     {cat.status}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell className="text-right flex justify-end gap-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="font-semibold text-slate-700"
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                      setManageSubsOpen(true);
+                    }}
+                  >
+                    SubCategories
+                  </Button>
                   <Button variant="ghost" size="icon" className="text-slate-400 hover:text-blue-600">
                     <MoreHorizontal className="w-4 h-4" />
                   </Button>
@@ -113,6 +126,39 @@ const AdminCategories = () => {
         </Table>
       </div>
       
+      {/* Manage SubCategories Modal */}
+      <Dialog open={manageSubsOpen} onOpenChange={setManageSubsOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Manage SubCategories</DialogTitle>
+            <DialogDescription>
+              Add or remove specific professions under the <span className="font-bold text-blue-600">{selectedCategory?.name}</span> category.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="py-2 space-y-4">
+            <div className="flex gap-2">
+              <Input placeholder="e.g. Cardiologist, Plumber..." className="flex-1" />
+              <Button className="bg-slate-900 text-white font-bold hover:bg-slate-800">Add</Button>
+            </div>
+            
+            <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 space-y-3 mt-4 max-h-60 overflow-y-auto">
+               <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Existing SubCategories</h4>
+               
+               {/* Mock Data Examples */}
+               <div className="flex justify-between items-center bg-white p-3 rounded-md border shadow-sm">
+                 <span className="font-medium text-slate-700">Specialist Type A</span>
+                 <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 hover:bg-red-50 h-8 px-2 font-medium">Remove</Button>
+               </div>
+               <div className="flex justify-between items-center bg-white p-3 rounded-md border shadow-sm">
+                 <span className="font-medium text-slate-700">Specialist Type B</span>
+                 <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-700 hover:bg-red-50 h-8 px-2 font-medium">Remove</Button>
+               </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
         <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
         <div>
